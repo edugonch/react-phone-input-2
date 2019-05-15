@@ -76,7 +76,7 @@ class ReactPhoneInput extends React.Component {
     dropdownStyle: {},
     searchStyle: {},
 
-    containerClass: 'react-tel-input',
+    containerClass: 'react-tel-input field has-addons',
     inputClass: '',
     buttonClass: '',
     dropdownClass: '',
@@ -797,40 +797,44 @@ class ReactPhoneInput extends React.Component {
       <div
         className={this.props.containerClass}
         style={this.props.containerStyle}>
-        <input
-          className={inputClasses}
-          style={this.props.inputStyle}
-          onChange={this.handleInput}
-          onClick={this.handleInputClick}
-          onFocus={this.handleInputFocus}
-          onBlur={this.handleInputBlur}
-          value={formattedNumber}
-          ref={el => this.numberInputRef = el}
-          onKeyDown={this.handleInputKeyDown}
-          placeholder={this.props.placeholder}
-          disabled={this.props.disabled}
-          type='tel'
-          {...this.props.inputExtraProps}
-        />
-
-        <div
-          className={flagViewClasses}
-          style={this.props.buttonStyle}
-          onKeyDown={this.handleKeydown}
-          ref={el => this.dropdownContainerRef = el}
-        >
+        <p class="control">
           <div
-            onClick={disableDropdown ? undefined : this.handleFlagDropdownClick}
-            className='selected-flag'
-            title={selectedCountry ? `${selectedCountry.name}: + ${selectedCountry.dialCode}` : ''}
+            className={flagViewClasses}
+            style={this.props.buttonStyle}
+            onKeyDown={this.handleKeydown}
+            ref={el => this.dropdownContainerRef = el}
           >
-            <div className={inputFlagClasses}>
-              {!disableDropdown && <div className={arrowClasses}></div>}
+            <div
+              onClick={disableDropdown ? undefined : this.handleFlagDropdownClick}
+              className='selected-flag'
+              title={selectedCountry ? `${selectedCountry.name}: + ${selectedCountry.dialCode}` : ''}
+            >
+              <div className={inputFlagClasses}>
+                {!disableDropdown && <div className={arrowClasses}></div>}
+              </div>
             </div>
-          </div>
 
-          {showDropdown && this.getCountryDropdownList()}
-        </div>
+            {showDropdown && this.getCountryDropdownList()}
+          </div>
+        </p>
+        <p class="control">
+          <input
+            className={inputClasses}
+            style={this.props.inputStyle}
+            onChange={this.handleInput}
+            onClick={this.handleInputClick}
+            onFocus={this.handleInputFocus}
+            onBlur={this.handleInputBlur}
+            value={formattedNumber}
+            ref={el => this.numberInputRef = el}
+            onKeyDown={this.handleInputKeyDown}
+            placeholder={this.props.placeholder}
+            disabled={this.props.disabled}
+            type='tel'
+            {...this.props.inputExtraProps}
+          />
+        </p>
+        
       </div>
     );
   }
